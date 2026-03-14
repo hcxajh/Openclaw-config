@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "0d5e5322-40f9-4c57-9594-36a6a7a0c165",
+      "name": "天气",
+      "enabled": true,
+      "createdAtMs": 1773244606621,
+      "updatedAtMs": 1773444694469,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 7 * * *",
+        "staggerMs": 0
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "给我发郑州今天的天气预报"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "user:ou_95e8881ead17df0dde6049db1bac3341",
+        "accountId": "daily"
+      },
+      "state": {
+        "nextRunAtMs": 1773531000000,
+        "lastRunAtMs": 1773444600020,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 94449,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "29d5941f-f6f0-4afa-b271-3be66c83a1e9",
+      "name": "银信科技股票",
+      "enabled": true,
+      "createdAtMs": 1773361605585,
+      "updatedAtMs": 1773365206631,
+      "schedule": {
+        "kind": "cron",
+        "expr": "25 9 * * 1-5"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "查询银信科技(300231)股票价格并发送给我"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "user:ou_95e8881ead17df0dde6049db1bac3341",
+        "accountId": "daily"
+      },
+      "state": {
+        "nextRunAtMs": 1773624300000,
+        "lastRunAtMs": 1773365100008,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 106623,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "daily-briefing-1773408786873",
+      "name": "每日早间简报",
+      "enabled": true,
+      "createdAtMs": 1773408786873,
+      "updatedAtMs": 1773446562171,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * *",
+        "staggerMs": 0
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "帮我整理一份早间简报发给用户，包含：1 用tavily搜索AI、科技、创业相关的最新新闻，写成完整内容而不是标题；2 我今天可以帮你自动完成什么事情（根据日常观察）"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "user:ou_95e8881ead17df0dde6049db1bac3341",
+        "accountId": "daily"
+      },
+      "state": {
+        "nextRunAtMs": 1773532800000,
+        "lastRunAtMs": 1773446400014,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 162157,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 1,
+        "lastError": "⚠️ 🛠️ Exec: tavily search --query \"AI 科技 创业 最新新闻 2026年3月\" --max-results 10 failed: zsh:1: command not found: tavily"
+      }
+    },
+    {
+      "id": "fanqie-daily-1773409781339",
+      "name": "每日生成10个番茄小说故事",
+      "enabled": true,
+      "createdAtMs": 1773409781339,
+      "updatedAtMs": 1773428756954,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3 * * *"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "请帮我生成10个番茄小说短故事，主题：家庭伦理、婆媳关系、养老问题、黄昏恋等中老年题材，每个故事8000-9000字。按技能要求保存到 fanqie/YYYY-MM-DD/{编号}/ 目录。生成完后汇报完成情况。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "user:ou_7b50389a9ecfb845e78892fd51cf4da3",
+        "accountId": "art"
+      },
+      "state": {
+        "consecutiveErrors": 0,
+        "nextRunAtMs": 1773514800000,
+        "lastRunAtMs": 1773428400021,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 356933,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered"
+      }
+    }
+  ]
+}

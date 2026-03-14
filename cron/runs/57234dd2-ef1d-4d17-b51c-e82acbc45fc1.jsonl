@@ -1,0 +1,1 @@
+{"ts":1773198214572,"jobId":"57234dd2-ef1d-4d17-b51c-e82acbc45fc1","action":"finished","status":"error","error":"Error: cron: job execution timed out","deliveryStatus":"unknown","runAtMs":1773198034568,"durationMs":179999,"nextRunAtMs":1773198300000}
