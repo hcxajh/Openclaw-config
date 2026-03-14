@@ -1,0 +1,2 @@
+# 在此替换为你的 MiniMax cookie
+# 获取方法：登录 minimaxi.com → F12 → Application → Cookies → minimaxi.com → 复制 cookie 值

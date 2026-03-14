@@ -1,0 +1,468 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.12",
+    "lastTouchedAt": "2026-03-13T12:22:02.330Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-13T12:12:41.530Z",
+    "lastRunVersion": "2026.3.12",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "minimax-cn:default": {
+        "provider": "minimax-cn",
+        "mode": "api_key"
+      }
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "minimax-cn": {
+        "baseUrl": "https://api.minimaxi.com/anthropic",
+        "api": "anthropic-messages",
+        "authHeader": true,
+        "models": [
+          {
+            "id": "MiniMax-M2.5",
+            "name": "MiniMax M2.5",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0.3,
+              "output": 1.2,
+              "cacheRead": 0.03,
+              "cacheWrite": 0.12
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "MiniMax-M2.5-highspeed",
+            "name": "MiniMax M2.5 \u9ad8\u901f\u7248",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0.5,
+              "output": 2
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          }
+        ]
+      },
+      "ollama": {
+        "baseUrl": "http://10.1.1.90:11434",
+        "api": "ollama",
+        "models": [
+          {
+            "id": "qwen3:8b",
+            "name": "Qwen 3 8B",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "qwen3.5:27b",
+            "name": "Qwen 3.5 27B",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "qwen3.5:9b",
+            "name": "Qwen 3.5 9B",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "minimax-cn/MiniMax-M2.5-highspeed"
+      },
+      "models": {
+        "ollama/qwen3:8b": {
+          "alias": "Qwen3-8B"
+        },
+        "ollama/qwen3.5:27b": {
+          "alias": "Qwen3.5-27B"
+        },
+        "ollama/qwen3.5:9b": {
+          "alias": "Qwen3.5-9B"
+        },
+        "minimax-cn/MiniMax-M2.5": {
+          "alias": "Minimax"
+        },
+        "minimax-cn/MiniMax-M2.5-highspeed": {}
+      },
+      "workspace": "/Users/huacuo/.openclaw/workspace-daily",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "verboseDefault": "on",
+      "elevatedDefault": "on",
+      "typingIntervalSeconds": 5,
+      "typingMode": "instant",
+      "heartbeat": {
+        "every": "30m",
+        "activeHours": {
+          "start": "07:00",
+          "end": "22:00"
+        },
+        "target": "last"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      },
+      "sandbox": {
+        "mode": "off"
+      },
+      "thinkingDefault": "medium"
+    },
+    "list": [
+      {
+        "id": "main",
+        "name": "\u82b1\u9519\u7684\u65e5\u5e38AI",
+        "workspace": "/Users/huacuo/.openclaw/workspace-daily",
+        "model": "minimax-cn/MiniMax-M2.5-highspeed"
+      },
+      {
+        "id": "code",
+        "name": "\u82b1\u9519\u7684\u4ee3\u7801AI",
+        "workspace": "/Users/huacuo/.openclaw/workspace-code",
+        "model": "minimax-cn/MiniMax-M2.5-highspeed"
+      },
+      {
+        "id": "art",
+        "name": "\u82b1\u9519\u7684\u753b\u753bAI",
+        "workspace": "/Users/huacuo/.openclaw/workspace-art",
+        "model": "minimax-cn/MiniMax-M2.5-highspeed"
+      },
+      {
+        "id": "video",
+        "name": "\u82b1\u9519\u7684\u89c6\u9891AI",
+        "workspace": "/Users/huacuo/.openclaw/workspace-video",
+        "model": "minimax-cn/MiniMax-M2.5-highspeed"
+      },
+      {
+        "id": "group",
+        "name": "\u82b1\u9519\u7fa4\u804aAI",
+        "workspace": "/Users/huacuo/.openclaw/workspace-group",
+        "model": "minimax-cn/MiniMax-M2.5-highspeed"
+      },
+      {
+        "id": "cos",
+        "name": "Chief of Staff",
+        "workspace": "~/.openclaw/workspace-cos",
+        "subagents": {
+          "allowAgents": [
+            "cos",
+            "cto",
+            "research",
+            "ko",
+            "builder"
+          ]
+        }
+      },
+      {
+        "id": "cto",
+        "name": "CTO / Tech Partner",
+        "workspace": "~/.openclaw/workspace-cto",
+        "subagents": {
+          "allowAgents": [
+            "cto",
+            "builder",
+            "research",
+            "ko"
+          ]
+        }
+      },
+      {
+        "id": "builder",
+        "name": "Builder / Executor",
+        "workspace": "~/.openclaw/workspace-builder",
+        "subagents": {
+          "allowAgents": [
+            "builder"
+          ]
+        }
+      }
+    ]
+  },
+  "tools": {
+    "profile": "full",
+    "sandbox": {
+      "tools": {
+        "allow": [
+          "exec",
+          "process",
+          "browser"
+        ]
+      }
+    },
+    "agentToAgent": {
+      "enabled": true,
+      "allow": ["cos", "cto", "builder"]
+    },
+    "sessions": {
+      "visibility": "all"
+    }
+  },
+  "session": {
+    "dmScope": "per-channel-peer",
+    "agentToAgent": {
+      "maxPingPongTurns": 5
+    }
+  },
+  "bindings": [
+    {
+      "agentId": "main",
+      "match": {
+        "channel": "feishu",
+        "accountId": "daily"
+      }
+    },
+    {
+      "agentId": "art",
+      "match": {
+        "channel": "feishu",
+        "accountId": "art"
+      }
+    },
+    {
+      "agentId": "code",
+      "match": {
+        "channel": "feishu",
+        "accountId": "coding"
+      }
+    },
+    {
+      "agentId": "video",
+      "match": {
+        "channel": "feishu",
+        "accountId": "video"
+      }
+    },
+    {
+      "agentId": "cos",
+      "match": {
+        "channel": "feishu",
+        "accountId": "cos"
+      }
+    },
+    {
+      "agentId": "cto",
+      "match": {
+        "channel": "feishu",
+        "accountId": "cto"
+      }
+    },
+    {
+      "agentId": "builder",
+      "match": {
+        "channel": "feishu",
+        "accountId": "builder"
+      }
+    }
+  ],
+  "messages": {
+    "ackReactionScope": "all"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "bootstrap-extra-files": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "groupPolicy": "allowlist",
+      "streaming": "partial",
+      "accounts": {
+        "daily": {
+          "enabled": true,
+          "dmPolicy": "pairing",
+          "botToken": "8067933881:AAFg9UgCngwXkntwLv4GgIhBTd4kv2677ys",
+          "groupPolicy": "allowlist",
+          "streaming": "partial"
+        },
+        "coding": {
+          "enabled": true,
+          "dmPolicy": "pairing",
+          "botToken": "7948462253:AAHZbiChnRV-a_yKXHgpG0gDsI37AvkY5gI",
+          "groupPolicy": "allowlist",
+          "streaming": "partial"
+        },
+        "art": {
+          "enabled": true,
+          "dmPolicy": "pairing",
+          "botToken": "8635762745:AAHhMf4q5rYnoyl9bgmJRdebxRUOQ7OrhhI",
+          "groupPolicy": "allowlist",
+          "streaming": "partial"
+        },
+        "default": {
+          "dmPolicy": "pairing",
+          "groupPolicy": "allowlist",
+          "streaming": "partial"
+        }
+      },
+      "defaultAccount": "daily"
+    },
+    "feishu": {
+      "enabled": true,
+      "defaultAccount": "daily",
+      "accounts": {
+        "daily": {
+          "enabled": true,
+          "appId": "cli_a93b984a24f91cd1",
+          "appSecret": "FVgAJ7R4q7ZHMy5N4spswgdYU6FZaCld",
+          "dmPolicy": "pairing",
+          "groupPolicy": "open"
+        },
+        "coding": {
+          "enabled": true,
+          "appId": "cli_a93b98b124ba9cc1",
+          "appSecret": "I8I1iSy21Fqcn6qujvXmpTNcaTb8vv8Y",
+          "dmPolicy": "pairing",
+          "groupPolicy": "open"
+        },
+        "art": {
+          "enabled": true,
+          "appId": "cli_a93b989ecf789ceb",
+          "appSecret": "i1zuc6doV5R7APpvnXGtAgl77lJlELRc",
+          "dmPolicy": "pairing",
+          "groupPolicy": "open"
+        },
+        "video": {
+          "enabled": true,
+          "appId": "cli_a938e9fbb9f85cc9",
+          "appSecret": "rawkAoAOuZ8MqD5i0poTVK25Obh3EXfz",
+          "dmPolicy": "pairing",
+          "groupPolicy": "open"
+        },
+        "cos": {
+          "enabled": true,
+          "appId": "cli_a93e94b992b85cb0",
+          "appSecret": "KLvog0QZKMYlYWXypj9SMdZQOpUW5Y2L",
+          "dmPolicy": "pairing",
+          "groupPolicy": "open"
+        },
+        "cto": {
+          "enabled": true,
+          "appId": "cli_a93e95a800785cb5",
+          "appSecret": "qG8oENCeRrIRhPoYseGtTfwMRxKWDXcH",
+          "dmPolicy": "pairing",
+          "groupPolicy": "open"
+        },
+        "builder": {
+          "enabled": true,
+          "appId": "cli_a93e96d43bf8dccd",
+          "appSecret": "BZXEN72oodvDLk3Tm1XLddhQ5yN1CdCN",
+          "dmPolicy": "pairing",
+          "groupPolicy": "open"
+        }
+      },
+      "groups": {
+        "oc_269b889bf9814bae9fb60e35aa4cda48": {
+          "allow": true,
+          "requireMention": false
+        },
+        "oc_bea3ae9f356efc1323c95b5281d747cb": {
+          "allow": true,
+          "requireMention": false
+        },
+        "oc_e987f52c0bb4a287b00e898acb4995b7": {
+          "allow": true,
+          "requireMention": false
+        }
+      }
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "d2ffe794ed834e8051bc7e78af78ebf37731d3187b967485"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "contacts.add",
+        "calendar.add",
+        "reminders.add",
+        "sms.send"
+      ]
+    }
+  },
+  "skills": {
+    "load": {
+      "watch": true,
+      "watchDebounceMs": 250
+    },
+    "entries": {
+      "gh-issues": {
+        "enabled": false
+      }
+    }
+  },
+  "plugins": {
+    "entries": {
+      "telegram": {
+        "enabled": true
+      },
+      "skillhub": {
+        "enabled": true,
+        "config": {
+          "primaryCli": "skillhub",
+          "fallbackCli": "clawhub",
+          "primaryLabel": "cn-optimized",
+          "fallbackLabel": "public-registry"
+        }
+      },
+      "feishu": {
+        "enabled": true
+      }
+    }
+  }
+}
